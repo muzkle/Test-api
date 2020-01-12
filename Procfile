@@ -1,1 +1,1 @@
-api: node api/dist/server.js
+api: node dist/server.js
