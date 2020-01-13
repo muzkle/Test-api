@@ -1,19 +1,31 @@
-import { Response } from 'express';
-import IGetUserAuthInfoRequest from '../interfaces/req.interface';
 import * as mysql from 'mysql';
 
 const connection = mysql.createConnection({
-    host: 'bausotzrbiblisqxlif4-mysql.services.clever-cloud.com',
-    port: '3306',
-    user: 'uro1ke6aiksh5zqz',
-    password: 'L1e3lm84mhnlHfmOEScN',
-    database: 'bausotzrbiblisqxlif4'
+    host: 'remotemysql.com',
+    port: 3306,
+    user: 'iG3881Ope1',
+    password: 'D8HPmuuAUv',
+    database: 'iG3881Ope1'
 });
 
-connection.connect(function (err) {
-    if (err) return console.log(err);
-    console.log('CONNECTED TO DATABASE!');
-    createTable(connection)
+
+function connectDB() {
+    connection.connect(function (err) {
+        if (err) return console.log(err);
+        console.log('CONNECTED TO DATABASE!');
+        createTable(connection)
+    });
+}
+
+connectDB();
+
+connection.on('error', function (err) {
+    console.log('db error', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+        connectDB();
+    } else {
+        throw err;
+    }
 });
 
 function createTable(conn: any) {
@@ -26,9 +38,11 @@ function createTable(conn: any) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
-    conn.query(sql, function (error, results, fields) {
+    conn.query(sql, function (error) {
         if (error) return console.log(error);
     });
+
+    
 }
 
 export default connection;

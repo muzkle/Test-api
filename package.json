@@ -7,7 +7,8 @@
     "dev": "nodemon src/server.ts",
     "prebuild": "rimraf dist",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "start-mon": "nodemon dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
@@ -17,7 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "linq-es2015": "^2.4.36",
     "moment": "^2.24.0",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "promise-mysql": "^4.1.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -41,7 +43,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.2",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
     "sucrase": "^3.10.0",
